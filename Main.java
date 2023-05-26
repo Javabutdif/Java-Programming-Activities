@@ -1,39 +1,92 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Random;
 import java.util.Stack;
 
+//Linked List plus Queue
 public class Main {
+	//Global Declaration
+	
+	
+	static LinkedList<String> books = new LinkedList<String>();
+	static Stack<String> stack = new Stack<String>();
+	static Queue<String> customer = new LinkedList<String>();
+	static Random rand = new Random();
+	static Libraries lib = new Libraries();
+	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		
-		Stack <String> stack = new Stack<String>();
 		
-		Name honda = new Name();
-		Name ford = new Name();
-		Name toyota= new Name();
+		int counter = 0;
+		double money = 0;
+		String customers = "";
+		String currentBook = "";
+		String[] recordBook = new String[8];
+		getCustomers();
+		allBooks();
 		
-		honda.name = "SpaceX";
-		honda.brand = "Honda";
-		honda.year = 2022;
+		display();
+		System.out.println();
 		
-		toyota.name = "Beach";
-		toyota.brand = "Toyota";
-		toyota.year = 2021;
+		System.out.println("All Books: " + books);
+		System.out.println("==============================");
+	
+	
+		int index = 0;
 		
-		ford.name = "JupiterX";
-		ford.brand = "Ford";
-		ford.year = 2023;
+		do {
+			Thread.sleep(2000);
+			customers = customer.poll();
+			currentBook = arrayBooks();
+			System.out.println( customers + " want [" + currentBook +"]" );
+			if(books.contains(currentBook)) {
+				System.out.println(customers + " bought [" + currentBook+"]");
+				books.remove(currentBook);
+				stack.push(customers);
+				index++;
+				money += 10.5;
+			}
+			else {
+				System.out.println(customers + " didn't buy the book[ " + currentBook +" ] because it's not available ");
+			}
+			System.out.println("==============================");
+			counter++;
+			
+		}while(counter < 8);
 		
-		//Stack kay Last in First OUT
-		stack.push(honda.getName());//1st
-		stack.push(ford.getName());//2nd
-		stack.push(toyota.getName());//3rd
-		
-		for(int i  = 0; i < stack.capacity(); i++) {
+		System.out.println("Customer who have purchased");
+		for(int x = 0; x < index; x++) {
 			System.out.println(stack.pop());
-			System.out.println("===================");
 		}
 		
+		System.out.println();
+		System.out.println("Total Income: " + money);
+
+	}
+	public static void display() {
+		System.out.println("Welcome to the Library!");
+	}
+	public static String arrayBooks() {
+		
+		String[] arrays = {"Maria Clara Version 1", "Brandon Life Habits","Kyle Tragic Stories","Jude Ketchup Mayonnaise"
+					, "Dione Life" , "ArachMage Bond"};
+		
+		
+		return arrays[rand.nextInt(arrays.length)];
+	}
+	
+	public static void allBooks() {
+		books.addAll(Libraries.getLibraries());
 		
 	}
+	public static void getCustomers() {
+		customer.addAll(Customer.getCustomer());
+		
+	}
+	
+	
 	
 
 }
