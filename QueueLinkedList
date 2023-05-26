@@ -1,0 +1,39 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class QueueLinkedList {
+
+    public static void main(String[] args) {
+        
+        Scanner console = new Scanner(System.in);      
+        Queue<String> q = new LinkedList <String>();
+        Queue<String> q1 = new LinkedList <String>();
+        
+        String[] animals = {"Bear","Giraffe","Lion","Tiger","Snake"};       
+        for(String x : animals) {
+            q.offer(x);
+        }
+        System.out.println("Queue: " + q);
+        System.out.print("Enter the animal name you want to check: ");
+        String name = console.next();   
+        int index =0;
+        int found = 0;        
+        for(int x = 0; x < animals.length; x++) {
+            String name1 = q.poll();
+            
+            if(name.compareTo(name1) == 0) {
+                index++;
+                found++;
+                break;
+            }
+            else {index++;}
+            
+            name1 = "";        
+        }
+        System.out.println("Animal Found? " + (found == 1 ? "YES" : "NO"));
+        System.out.println("Number of polls/remove items from queue: " + index);
+        System.out.println("Current Queue: " + q);
+        System.out.println();
+    
+        //2nd Run same code as the above but different queue
