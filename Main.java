@@ -1,91 +1,126 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Random;
-import java.util.Stack;
+import javax.swing.JOptionPane;
 
-//Linked List plus Queue
 public class Main {
-	//Global Declaration
-	
-	
-	static LinkedList<String> books = new LinkedList<String>();
-	static Stack<String> stack = new Stack<String>();
-	static Queue<String> customer = new LinkedList<String>();
-	static Random rand = new Random();
-	static Libraries lib = new Libraries();
-	
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) {
 		
-		
+		double result = 0;
+		int count = 0;
+		int num = 0;
 		int counter = 0;
-		double money = 0;
-		String customers = "";
-		String currentBook = "";
-		String[] recordBook = new String[8];
-		getCustomers();
-		allBooks();
 		
-		display();
-		System.out.println();
+		JOptionPane frame = new JOptionPane();
+		frame.setSize(500,500);
+		frame.setLayout(null);
+		frame.setVisible(true);
 		
-		System.out.println("All Books: " + books);
-		System.out.println("==============================");
-	
-	
-		int index = 0;
 		
-		do {
-			Thread.sleep(2000);
-			customers = customer.poll();
-			currentBook = arrayBooks();
-			System.out.println( customers + " want [" + currentBook +"]" );
-			if(books.contains(currentBook)) {
-				System.out.println(customers + " bought [" + currentBook+"]");
-				books.remove(currentBook);
-				stack.push(customers);
-				index++;
-				money += 10.5;
-			}
-			else {
-				System.out.println(customers + " didn't buy the book[ " + currentBook +" ] because it's not available ");
-			}
-			System.out.println("==============================");
-			counter++;
+	while(counter != 1) {	
+	if(JOptionPane.showConfirmDialog(null, "Fahrenheit and Celsius Conversion" + "\n"+ "\n" + 
+	"Do you want to enter the program?  ", null, JOptionPane.YES_NO_OPTION )== JOptionPane.YES_OPTION) 
+	{
+		while(count != 1 ) {
+	try {
+		
+		 num = Integer.parseInt(JOptionPane.showInputDialog("Enter 1 if Celsius to Fahrenheit. Enter 2 if Fahrenheit to Celsius"));
+		 	
 			
-		}while(counter < 8);
+			if(num == 1) {
+				double num1 = Double.parseDouble(JOptionPane.showInputDialog("Enter for Celsius: "));
+				result = Fahren.getFahren(num1);//method calculations
+				new Fahren(result);//display result
+				
+					if(JOptionPane.showConfirmDialog(null, " Want to continue? ", null, JOptionPane.YES_NO_OPTION )== JOptionPane.YES_OPTION) {
+							//Loop continue
+						}
+					else {
+						count++;// end of loop when this condition started
+					}
+			}
+			if(num == 2) {
+				double num1 = Double.parseDouble(JOptionPane.showInputDialog("Enter for Fahrenheit: "));
+				result = Cel.getCel(num1);//method calculation
+				new Cel(result);//display result
+				
+				
+				 	if(JOptionPane.showConfirmDialog(null, " Want to continue? ", null, JOptionPane.YES_NO_OPTION )== JOptionPane.YES_OPTION) {
+				 			//Loop continue
+				 		}
+				 	else {
+				 		count++;// end of loop when this condition started
+				 	}
+			}
+			if(num != 1  && num != 2) {
+				JOptionPane.showMessageDialog(null, "Invalid Input!");//error catch for the 2nd input
+				
+			}
 		
-		System.out.println("Customer who have purchased");
-		for(int x = 0; x < index; x++) {
-			System.out.println(stack.pop());
+	    }catch(Exception e) {
+	    	
+	    	JOptionPane.showMessageDialog(null, "Please enter a number that corresponding to the choices!");//error catch for the 1st input
+	    }
+		
+		}
+			
+		}
+	
+	else {
+		
+		JOptionPane.showMessageDialog(null, "You have exited the program :D");
+		counter++;
+	}
+	}
+	
+		
+		
+
+	}
+	/*
+		static double getFahren(double num1) {
+			 double result = (num1 * 1.8)+ 32;
+			 
+			 return result;
 		}
 		
-		System.out.println();
-		System.out.println("Total Income: " + money);
+	
+		static void fahren(double result) {
+			
+				JOptionPane.showMessageDialog(null, result);
+				
+				if(result > 200 || result > 89) {
+					JOptionPane.showMessageDialog(null, "Hot");
+				}
+				if(result > 61 && result < 89) {
+					JOptionPane.showMessageDialog(null, "Normal");
+				}
+				if(result < 61 || result == 0) {
+					JOptionPane.showMessageDialog(null, "Cold");
+				}
 
-	}
-	public static void display() {
-		System.out.println("Welcome to the Library!");
-	}
-	public static String arrayBooks() {
+		}
+		static double getCel(double num1) {
+			 double result = (num1 - 32)* 1.8;
+			 
+			 return result;
+		}
 		
-		String[] arrays = {"Maria Clara Version 1", "Brandon Life Habits","Kyle Tragic Stories","Jude Ketchup Mayonnaise"
-					, "Dione Life" , "ArachMage Bond"};
-		
-		
-		return arrays[rand.nextInt(arrays.length)];
-	}
 	
-	public static void allBooks() {
-		books.addAll(Libraries.getLibraries());
-		
-	}
-	public static void getCustomers() {
-		customer.addAll(Customer.getCustomer());
-		
-	}
-	
+		static void cel(double result) {
+			
+			JOptionPane.showMessageDialog(null, result);
+				
+				if(result > 100 || result > 37) {
+					JOptionPane.showMessageDialog(null, "Hot");
+				}
+				if(result > 29 && result < 37) {
+					JOptionPane.showMessageDialog(null, "Normal");
+				}
+				if(result < 29 || result == 0) {
+					JOptionPane.showMessageDialog(null, "Cold");
+				}
+
+		}
+		*/
 	
 	
 
