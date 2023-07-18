@@ -33,6 +33,10 @@ public class Authentication{
          lastname = JOptionPane.showInputDialog("Enter lastname");
          course = JOptionPane.showInputDialog("Enter course");
          userInput = JOptionPane.showInputDialog("Enter username");
+         
+         if(student.verifier(userInput))
+            JOptionPane.showMessageDialog(null,"Username already existed!");
+         else{
          passInput = JOptionPane.showInputDialog("Enter password");
          new Account(userInput, passInput);
          new Account(firstname, middlename, lastname, course);
@@ -46,7 +50,7 @@ public class Authentication{
           JOptionPane.showMessageDialog(null,"Successful!");
 
 
-      
+      }
       }
       else if(choice  == 3){
       while(userInput.isEmpty() && passInput.isEmpty() && true){
@@ -146,6 +150,9 @@ class Account{
 
 
       
+   }
+   public boolean verifier(String username){
+      return studentAccount.containsKey(username);
    }
    public void viewStudentData(){
        String display = "";
