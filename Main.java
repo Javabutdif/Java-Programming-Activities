@@ -1,127 +1,49 @@
-import javax.swing.JOptionPane;
-
+import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
+		Scanner console = new Scanner(System.in);
+		Main main = new Main();
 		
-		double result = 0;
-		int count = 0;
-		int num = 0;
-		int counter = 0;
+		while(true) {
+		System.out.print("Input Date\nFormat: mm/dd/yyyy\n\nInput: ");
+		String input = console.next();
 		
-		JOptionPane frame = new JOptionPane();
-		frame.setSize(500,500);
-		frame.setLayout(null);
-		frame.setVisible(true);
+		String[] dateTime = input.split("/");
+		
+		int month = Integer.parseInt(dateTime[0]);
+		int day = Integer.parseInt(dateTime[1]);
+		int year = Integer.parseInt(dateTime[2]);
 		
 		
-	while(counter != 1) {	
-	if(JOptionPane.showConfirmDialog(null, "Fahrenheit and Celsius Conversion" + "\n"+ "\n" + 
-	"Do you want to enter the program?  ", null, JOptionPane.YES_NO_OPTION )== JOptionPane.YES_OPTION) 
-	{
-		while(count != 1 ) {
-	try {
 		
-		 num = Integer.parseInt(JOptionPane.showInputDialog("Enter 1 if Celsius to Fahrenheit. Enter 2 if Fahrenheit to Celsius"));
-		 	
-			
-			if(num == 1) {
-				double num1 = Double.parseDouble(JOptionPane.showInputDialog("Enter for Celsius: "));
-				result = Fahren.getFahren(num1);//method calculations
-				new Fahren(result);//display result
-				
-					if(JOptionPane.showConfirmDialog(null, " Want to continue? ", null, JOptionPane.YES_NO_OPTION )== JOptionPane.YES_OPTION) {
-							//Loop continue
-						}
-					else {
-						count++;// end of loop when this condition started
-					}
-			}
-			if(num == 2) {
-				double num1 = Double.parseDouble(JOptionPane.showInputDialog("Enter for Fahrenheit: "));
-				result = Cel.getCel(num1);//method calculation
-				new Cel(result);//display result
-				
-				
-				 	if(JOptionPane.showConfirmDialog(null, " Want to continue? ", null, JOptionPane.YES_NO_OPTION )== JOptionPane.YES_OPTION) {
-				 			//Loop continue
-				 		}
-				 	else {
-				 		count++;// end of loop when this condition started
-				 	}
-			}
-			if(num != 1  && num != 2) {
-				JOptionPane.showMessageDialog(null, "Invalid Input!");//error catch for the 2nd input
-				
-			}
+		String monthOut = "";
 		
-	    }catch(Exception e) {
-	    	
-	    	JOptionPane.showMessageDialog(null, "Please enter a number that corresponding to the choices!");//error catch for the 1st input
-	    }
+		switch (month) {
+		case 1 -> monthOut = "January";
+		case 2 -> monthOut = "February";
+		case 3 -> monthOut = "March";
+		case 4 -> monthOut = "April";
+		case 5 -> monthOut = "May";
+		case 6 -> monthOut = "June";
+		case 7 -> monthOut = "July";
+		case 8 -> monthOut = "August";
+		case 9 -> monthOut = "September";
+		case 10 -> monthOut = "October";
+		case 11 -> monthOut = "November";
+		case 12 -> monthOut = "December";
 		
 		}
-			
-		}
-	
-	else {
 		
-		JOptionPane.showMessageDialog(null, "You have exited the program :D");
-		counter++;
-	}
+		
+		System.out.println("Date: " + monthOut +" "+day+", " + year+"\n"+ main.leapYear(year)+"\n");
+		}
+		
+		
 	}
 	
-		
-		
-
+	public String leapYear(int year) {
+		return year%4 == 0 ? "Leap Year" : "Not Leap Year";
 	}
-	/*
-		static double getFahren(double num1) {
-			 double result = (num1 * 1.8)+ 32;
-			 
-			 return result;
-		}
-		
-	
-		static void fahren(double result) {
-			
-				JOptionPane.showMessageDialog(null, result);
-				
-				if(result > 200 || result > 89) {
-					JOptionPane.showMessageDialog(null, "Hot");
-				}
-				if(result > 61 && result < 89) {
-					JOptionPane.showMessageDialog(null, "Normal");
-				}
-				if(result < 61 || result == 0) {
-					JOptionPane.showMessageDialog(null, "Cold");
-				}
-
-		}
-		static double getCel(double num1) {
-			 double result = (num1 - 32)* 1.8;
-			 
-			 return result;
-		}
-		
-	
-		static void cel(double result) {
-			
-			JOptionPane.showMessageDialog(null, result);
-				
-				if(result > 100 || result > 37) {
-					JOptionPane.showMessageDialog(null, "Hot");
-				}
-				if(result > 29 && result < 37) {
-					JOptionPane.showMessageDialog(null, "Normal");
-				}
-				if(result < 29 || result == 0) {
-					JOptionPane.showMessageDialog(null, "Cold");
-				}
-
-		}
-		*/
-	
-	
 
 }
